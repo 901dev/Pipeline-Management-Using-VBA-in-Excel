@@ -1,0 +1,18 @@
+# Pipeline-Management-Using-VBA-in-Excel
+Public Sub Color()
+
+Dim ws As Worksheet
+Set ws = ThisWorkbook.Worksheets("Manage My Pipeline") '---Name it whatever the sheet name is
+Dim x As Integer
+
+For x = 6 To 100
+    If ws.Cells(x, 10).Value2 > ws.Cells(x, 11).Value2 Then
+        ws.Cells(x, 11).Interior.Color = RGB(255, 0, 0) '---colors the cell red which means lock is expiring
+    ElseIf ws.Cells(x, 11).Value2 = "" Then
+        ws.Cells(x, 11).Interior.Color = RGB(255, 0, 0) '---colors blank lock expirations red
+    ElseIf ws.Cells(x, 11).Value2 >= ws.Cells(x, 10).Value2 Then
+        ws.Cells(x, 11).Interior.Color = RGB(255, 255, 255) '---keeps cells white if lock isn't expiring
+    End If
+Next x
+
+End Sub
